@@ -31,9 +31,9 @@ def test_LightTester_count():
 def test_LightTester_apply():
     lt = light_counter.LightTester(3)
     #start:            Coordinates
-    #F, F, F      (0,0), (0,1), (0,2)
-    #F, F, F      (1,0), (1,1), (1,2)
-    #F, F, F      (2,0), (2,1), (2,2)
+    #F, F, F      (0,0), (1,0), (2,0)
+    #F, F, F      (0,1), (1,1), (2,1)
+    #F, F, F      (0,2), (2,2), (2,2)
     
     #switch on middle one (1,1)
     #F, F, F
@@ -43,26 +43,23 @@ def test_LightTester_apply():
     for row in range(len(lt.lights)):
         for col in range(len(lt.lights[row])):
             if row == 1 and col == 1:
-                if lt.lights[row][col] == False: #check if middle light is on as required
-                    assert False
-            elif lt.lights[row][col] == True: # check if any other light is off as required
-                assert False
+                assert lt.lights[row][col] == True #check if middle light is on as required
+            else:
+                assert lt.lights[row][col] == False #check if any other light is off as required
                  
     #toggle the middle row (1,0), (1,1), (1,2)
     #F, F, F
     #T, F, T
     #F, F, F
-    lt.apply(["switch", "1","0","1","2"])
+    lt.apply(["switch", "0","1","2","1"])
     for row in range(len(lt.lights)):
         for col in range(len(lt.lights[row])):
             if row == 1 and col == 1:
-                if lt.lights[row][col] == True: #check if middle light is off as required
-                    assert False
+                assert lt.lights[row][col] == False #check if middle light is off as required
             elif row == 1 and (col == 0 or col == 2): #check if (1,0) and (1,2) are on as required
-                if lt.lights[row][col] == False:
-                    assert False
-            elif lt.lights[row][col] == True: # check if any other light is off as required
-                assert False
+                assert lt.lights[row][col] == True
+            else:
+                assert lt.lights[row][col] == False # check if any other light is off as required
     
     #turn them all off (0,0) ... (2,2)
     #F, F, F
@@ -71,5 +68,4 @@ def test_LightTester_apply():
     lt.apply(["turn off", "0","0","2","2"])
     for row in range(len(lt.lights)):
         for col in range(len(lt.lights[row])):
-            if lt.lights[row][col] == True: #check if off as required
-                assert False
+            assert lt.lights[row][col] == False #check if off as required

@@ -1,4 +1,1 @@
-{
-  "tests/test_light_counter.py::test_LightTester_apply": true,
-  "tests/test_light_counter.py::test_LightTester_count": true
-}
+{}
