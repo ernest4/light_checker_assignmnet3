@@ -6,7 +6,7 @@
 import pytest
 
 
-from light_counter import light_counter
+from light_counter import lightTester
 
 
 @pytest.fixture
@@ -25,11 +25,11 @@ def response():
     # assert 'GitHub' in BeautifulSoup(response.content).title.string
     
 def test_LightTester_count():
-    lt = light_counter.LightTester(3)
+    lt = lightTester.LightTester(3)
     assert lt.count() == 9
     
 def test_LightTester_apply():
-    lt = light_counter.LightTester(3)
+    lt = lightTester.LightTester(3)
     #start:            Coordinates
     #F, F, F      (0,0), (1,0), (2,0)
     #F, F, F      (0,1), (1,1), (2,1)
