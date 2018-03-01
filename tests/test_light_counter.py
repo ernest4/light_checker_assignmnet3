@@ -7,6 +7,7 @@ import pytest
 
 
 from light_counter import lightTester
+from light_counter import fileParser
 
 
 @pytest.fixture
@@ -69,3 +70,9 @@ def test_LightTester_apply():
     for row in range(len(lt.lights)):
         for col in range(len(lt.lights[row])):
             assert lt.lights[row][col] == False #check if off as required
+            
+def test_parseFile_read_local_file():
+    inputFile = "./testData/test_data.txt"
+    size, instructions = fileParser.fileParser(inputFile)
+    assert size is not None
+    

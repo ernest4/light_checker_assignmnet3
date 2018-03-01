@@ -1,1 +1,3 @@
-{}
+{
+  "tests/test_light_counter.py::test_parseFile_read_local_file": true
+}
