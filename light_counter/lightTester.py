@@ -14,7 +14,7 @@ class LightTester:
         self.lights = [[False]*size for _ in range(size)]
         
     def apply(self, command):
-        action, x1, y1, x2, y2 = command[0], int(command[1]), int(command[2]), int(command[3]), int(command[4])
+        action, x1, y1, x2, y2 = command[0], command[1], command[2], command[3], command[4]
         print(action,',',x1,',',y1,',',x2,',',y2) #Testing information
         if command[0] == "turn on":
             for row in range(len(self.lights)):

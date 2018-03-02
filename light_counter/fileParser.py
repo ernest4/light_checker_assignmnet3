@@ -23,20 +23,28 @@ def fileParser(inputURI):
             for line in inputFile.readlines():
                 result = pattern.match(line)
                 if result is not None:
+                    result = list(result.groups())
+                    #convert numbers to ints
+                    for i in [1,2,3,4]:
+                        print("iterator",i)
+                        result[i] = int(result[i])
                     #turn negative values to zero
-                    instructions.append(pattern.match(line))
+                    for i in [1,2,3,4]:
+                        if result[i] < 0:
+                            result[i] = 0
+                    instructions.append(result)
         
         #for debugging
         print(instructions)
         print(len(instructions))
-        print(instructions[0].groups()[0])
-        print(instructions[0].groups()[1])
-        print(instructions[0].groups()[2])
-        print(instructions[0].groups()[3])
-        print(instructions[0].groups()[4])
-        print(instructions[0].group())
-        print(instructions[1].group())
-        print(instructions[2].group())
+        print(instructions[0][0])
+        print(instructions[0][1])
+        print(instructions[0][2])
+        print(instructions[0][3])
+        print(instructions[0][4])
+        print(instructions[0])
+        print(instructions[1])
+        print(instructions[2])
                 
         return size, instructions
         
