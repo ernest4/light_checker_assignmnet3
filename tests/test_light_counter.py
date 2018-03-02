@@ -27,7 +27,7 @@ def response():
     
 def test_LightTester_count():
     lt = lightTester.LightTester(3)
-    assert lt.count() == 9
+    assert lt.count() == 0
     
 def test_LightTester_apply():
     lt = lightTester.LightTester(3)
@@ -72,7 +72,26 @@ def test_LightTester_apply():
             assert lt.lights[row][col] == False #check if off as required
             
 def test_parseFile_read_local_file():
-    inputFile = "./testData/test_data.txt"
+    #Testing proper data
+    inputFile = "tests/testData/test_data.txt"
     size, instructions = fileParser.fileParser(inputFile)
-    assert size is not None
+    assert size == 10
+    assert instructions[0].group() == 'turn on 0,0 through 9,9'
+    assert instructions[1].group() == 'turn off 0,0 through 9,9'
+    assert instructions[2].group() == 'switch 0,0 through 9,9'
+    assert instructions[3].group() == 'turn off 0,0 through 9,9'
+    assert instructions[4].group() == 'turn on 2,2 through 7,7'
+    
+    #Testing invalid data (invalid size)
+    inputFile = "tests/testData/test_data2.txt"
+    size, instructions = fileParser.fileParser(inputFile)
+    assert size == None
+    
+    #Testing invalid data (invalid instructions)
+    inputFile = "tests/testData/test_data3.txt"
+    size, instructions = fileParser.fileParser(inputFile)
+    assert size == 10
+    assert instructions[0].group() == 'turn on 0,0 through 9,9'
+    assert instructions[1].group() == 'turn off 0,0 through 9,9'
+    assert instructions[2].group() == 'turn on 0,2 through 0,7'
     

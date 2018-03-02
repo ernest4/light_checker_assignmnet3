@@ -29,6 +29,9 @@ def main(argv=None):
     #parsing the input file
     size, instructions = fileParser(opts.inputFileName)
     
+    if size is None or instructions is None: #Invalid size or no valid instructions available
+        sys.exit(2)
+    
     #creating a light tester class, applying the instructions and printing the result
     lightTester = LightTester(size)
     

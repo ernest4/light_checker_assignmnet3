@@ -35,9 +35,10 @@ class LightTester:
                         else:
                             self.lights[row][col] = True
     
-    def count(self):
+    def count(self): #count the number of lights which are on
         count = 0
-        rowLengthsList = [len(row) for row in self.lights]
-        for length in rowLengthsList:
-            count += length
+        for row in range(len(self.lights)):
+            for col in range(len(self.lights[row])):
+                if self.lights[row][col] == True:
+                    count += 1
         return count
