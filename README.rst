@@ -26,7 +26,9 @@ Reads input instructions to turn on/off certain lights and outputs the resultant
 Features
 --------
 
-* TODO
+* To use:
+
+solve_led --input uri/to/file.txt
 
 Credits
 -------
