@@ -33,12 +33,14 @@ def main(argv=None):
         sys.exit(2)
     
     #creating a light tester class, applying the instructions and printing the result
+    print("Processing: ", opts.inputFileName)
     lightTester = LightTester(size)
     
     for instruction in instructions:
         lightTester.apply(instruction)
         
-    print("#occupied: ", lightTester.count())
+    
+    print("Results for: ", opts.inputFileName, "\n#occupied: ", lightTester.count())
     return 0
 
 if __name__ == "__main__":
