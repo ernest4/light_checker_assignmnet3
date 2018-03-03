@@ -18,9 +18,9 @@ class LightTester:
     def apply(self, command):
         action, x1, y1, x2, y2 = command[0], command[1], command[2], command[3], command[4]
         if command[0] == "turn on":
-            self.lights[y1:y2+1,x1:x2+1,] = True
+            self.lights[y1:y2+1,x1:x2+1] = True
         elif command[0] == "turn off":
-            self.lights[y1:y2+1,x1:x2+1,] = False
+            self.lights[y1:y2+1,x1:x2+1] = False
         else: #switch
             self.lights[y1:y2+1,x1:x2+1] = ~self.lights[y1:y2+1,x1:x2+1]
     
