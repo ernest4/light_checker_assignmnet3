@@ -7,6 +7,7 @@ def fileParser(inputURI):
     '''
     Parses an input file URI to find and extract valid commands.
     '''
+    # action, x1, y1, x2, y2
     pattern = re.compile(".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*")
     
     size, instructions = None, []
@@ -36,6 +37,11 @@ def fileParser(inputURI):
                 for i in [1,2,3,4]:
                     if result[i] < 0:
                         result[i] = 0
+                #Swap coordinates to keep all coordinates in the form "from low coord through high coord"
+                if result[1] > result[3]:
+                    result[1], result[3] = result[3], result[1]
+                if result[2] > result[4]:
+                    result[2], result[4] = result[4], result[2]
                 instructions.append(result)
     else:
         #process local file
